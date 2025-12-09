@@ -51,8 +51,12 @@ This is an Nx monorepo for a full-stack application with the following tech stac
 - Commit after every significant change (every 15-30 minutes minimum)
 - Push to GitHub frequently
 - GitHub issues are the PRIMARY CONTEXT - always read issues first
+- DO NOT output verbose markdown reports or summaries
+- DO NOT create workaround files or temporary files without clean-up
+- DO NOT create temporary files like markdown drafts or "_revised" files
+- Keep documentation minimal and actionable
 
-**GitHub CLI (`gh`) Usage and issue workflow (concise):**
+**GitHub CLI (`gh`) Usage and issue workflow:**
 
 - `gh` is configured in the workspace — prefer `gh` for quick issue/PR creation and linking, but use the GitHub UI when you need advanced editing.
 - Keep labels short and consistent (lowercase). Avoid all-caps or verbose label names.
@@ -82,20 +86,21 @@ This is an Nx monorepo for a full-stack application with the following tech stac
 
 
 
-
-**Output Philosophy:**
-- DO NOT output verbose markdown reports or summaries
-- DO NOT create workaround files or temporary files without clean-up
-- DO NOT create temporary files like markdown drafts or "_revised" files
-- Use proper git workflow (commits, branches, PRs)
-- Keep documentation minimal and actionable
-
 ## Environment
 
 - Runs in Coder workspace
-- Docker available for containerized services
-- PostgreSQL runs in Docker
-- Keycloak runs in Docker
+- Services run in local Kubernetes cluster:
+  - PostgreSQL (runs in Docker)
+  - Keycloak (OIDC identity provider)
+  - Trigger.dev (workflow automation)
+  - ERPNext (ERP/CRM system)
+  - Coder (development workspaces)
+  - Outline (documentation/wiki)
+  - Mattermost (team communication)
+  - Gitea (Git hosting)
+  - Logto (alternative identity provider)
+  - Letta AI (AI agent platform)
+  - Langfuse (LLM observability)
 
 ## MCP Servers
 
