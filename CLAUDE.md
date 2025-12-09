@@ -41,20 +41,31 @@ This is an Nx monorepo for a full-stack application with the following tech stac
 **Infrastructure:**
 - Coder workspace with Docker enabled
 - GitHub repo issues as context, session, and project tracking
+- **App Preview URL**: https://preview--solo-space--jxu002700.xuperson.org/ (port 3000)
+  - Always accessible for testing OAuth callbacks and public URLs
+  - Use this URL for Keycloak redirect URIs and external integrations
 
 ## Development Workflow
 
 **CRITICAL - Ephemeral Workspace:**
 - This is a Coder ephemeral workspace - **COMMIT VERY OFTEN OR LOSE EVERYTHING**
 - **ONLY the git repo is synced** - home directory is ephemeral
-- **ALL project files in .claude/ MUST be committed** (plans, notes, etc.)
 - Commit after every significant change (every 15-30 minutes minimum)
 - Push to GitHub frequently
+
+**CRITICAL - .claude/ Directory Usage:**
+- `.claude/` is for CONFIGURATION ONLY (hooks, plans during planning phase)
+- **NEVER create report files, summaries, or documentation in .claude/**
+- **ALL reports, test results, summaries MUST go to GitHub issue comments**
+- Use `gh issue comment <number> --body "content"` for all status updates
 - GitHub issues are the PRIMARY CONTEXT - always read issues first
-- DO NOT output verbose markdown reports or summaries
+
+**CRITICAL - File Creation Rules:**
+- DO NOT output verbose markdown reports or summaries to files
 - DO NOT create workaround files or temporary files without clean-up
-- DO NOT create temporary files like markdown drafts or "_revised" files
+- DO NOT create temporary files like markdown drafts, "_revised", "REPORT.md", etc.
 - Keep documentation minimal and actionable
+- **All progress reports → GitHub issue comments ONLY**
 
 **GitHub CLI (`gh`) Usage and issue workflow:**
 

@@ -18,8 +18,12 @@ export const auth = betterAuth({
       ],
     }),
   ],
-  baseURL: process.env['NEXT_PUBLIC_APP_URL'] || 'http://localhost:3000',
-  trustedOrigins: [process.env['NEXT_PUBLIC_APP_URL'] || 'http://localhost:3000'],
+  baseURL: process.env['NEXT_PUBLIC_APP_URL'] || process.env['CODER_APP_PREVIEW_URL'] || 'http://localhost:3000',
+  trustedOrigins: [
+    process.env['NEXT_PUBLIC_APP_URL'] || process.env['CODER_APP_PREVIEW_URL'] || 'http://localhost:3000',
+    'https://preview--solo-space--jxu002700.xuperson.org',
+    'http://localhost:3000',
+  ],
 });
 
 export type Session = typeof auth.$Infer.Session;
