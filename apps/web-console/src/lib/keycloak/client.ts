@@ -155,7 +155,143 @@ export class KeycloakOrganizationClient {
   }
 
   /**
+   * Update organization (including attributes)
+   */
+  async updateOrganization(
+    orgId: string,
+    updates: Partial<KeycloakOrganization>
+  ): Promise<void> {
+    const token = await this.getAdminToken();
+    const url = `${this.baseUrl}/admin/realms/${this.realm}/organizations/${orgId}`;
+
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updates),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(
+        `Failed to update organization: ${response.statusText} - ${error}`
+      );
+    }
+  }
+
+  /**
+   * List all organizations in the realm
+   */
+  async listOrganizations(): Promise<KeycloakOrganization[]> {
+    const token = await this.getAdminToken();
+    const url = `${this.baseUrl}/admin/realms/${this.realm}/organizations`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to list organizations: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  /**
+   * Search organizations by alias (slug)
+   */
+  async searchOrganizationsByAlias(
+    alias: string
+  ): Promise<KeycloakOrganization[]> {
+    const token = await this.getAdminToken();
+    // Keycloak uses 'search' query parameter for alias/name search
+    const url = `${this.baseUrl}/admin/realms/${this.realm}/organizations?search=${encodeURIComponent(alias)}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to search organizations: ${response.statusText}`);
+    }
+
+    const orgs: KeycloakOrganization[] = await response.json();
+
+    // Filter for exact alias match
+    return orgs.filter((org) => org.alias === alias);
+  }
+
+  /**
+   * Invite user to organization via Keycloak native invitation API
+   * Uses form-urlencoded format as required by Keycloak
+   */
+  async inviteUserToOrganization(
+    orgId: string,
+    email: string,
+    firstName?: string,
+    lastName?: string
+  ): Promise<void> {
+    const token = await this.getAdminToken();
+    const url = `${this.baseUrl}/admin/realms/${this.realm}/organizations/${orgId}/members/invite-user`;
+
+    const formData = new URLSearchParams();
+    formData.append('email', email);
+    if (firstName) formData.append('firstName', firstName);
+    if (lastName) formData.append('lastName', lastName);
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData.toString(),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(
+        `Failed to invite user to organization: ${response.statusText} - ${error}`
+      );
+    }
+  }
+
+  /**
+   * Remove user from organization
+   */
+  async removeUserFromOrganization(
+    orgId: string,
+    userId: string
+  ): Promise<void> {
+    const token = await this.getAdminToken();
+    const url = `${this.baseUrl}/admin/realms/${this.realm}/organizations/${orgId}/members/${userId}`;
+
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(
+        `Failed to remove user from organization: ${response.statusText} - ${error}`
+      );
+    }
+  }
+
+  /**
    * Get organizations for a user (via email domain matching)
+   * @deprecated Use getUserOrganizationMemberships instead for accurate results
    */
   async getOrganizationsForUser(userEmail: string): Promise<KeycloakOrganization[]> {
     const token = await this.getAdminToken();
@@ -179,5 +315,27 @@ export class KeycloakOrganizationClient {
     return orgs.filter((org) =>
       org.domains?.some((d) => d.name === domain)
     );
+  }
+
+  /**
+   * Get user's Keycloak ID by email
+   */
+  async getUserByEmail(email: string): Promise<{ id: string } | null> {
+    const token = await this.getAdminToken();
+    const url = `${this.baseUrl}/admin/realms/${this.realm}/users?email=${encodeURIComponent(email)}&exact=true`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to get user: ${response.statusText}`);
+    }
+
+    const users = await response.json();
+    return users.length > 0 ? { id: users[0].id } : null;
   }
 }
