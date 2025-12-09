@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth/config';
 import { db } from '@/lib/db';
 import { member } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
+import { syncUserOrganizations } from '@/lib/keycloak/sync';
 
 /**
  * Keycloak OIDC Callback Handler
@@ -11,13 +12,19 @@ import { eq } from 'drizzle-orm';
  * It performs the following steps:
  * 1. Complete the OAuth flow with better-auth
  * 2. Get user information from the session
- * 3. Check if user is a member of any organizations
- * 4. If no organizations → redirect to onboarding (user will create org)
- * 5. If has organizations → redirect to dashboard
+ * 3. Sync organization memberships from Keycloak to PostgreSQL
+ * 4. Check if user is a member of any organizations
+ * 5. If no organizations → redirect to onboarding (user will create org)
+ * 6. If has organizations → redirect to dashboard
  *
  * Note: Organization creation is now handled by the onboarding UI,
  * which calls /api/organization/create with user-chosen org name.
  * This keeps auth callback simple and follows modern SaaS patterns.
+ *
+ * Invitation Flow:
+ * - When user accepts invitation via Keycloak, Keycloak adds them to org
+ * - OIDC callback syncs this new membership to PostgreSQL
+ * - Pending invitation is marked as accepted
  *
  * References:
  * - Better Auth: https://www.better-auth.com/docs/plugins/generic-oauth
@@ -40,6 +47,23 @@ export async function GET(request: NextRequest) {
     const user = session.user;
     console.log(`[OIDC Callback] User authenticated: ${user.email}`);
 
+    // Sync organization memberships from Keycloak to PostgreSQL
+    // This handles invitation acceptance and new memberships
+    try {
+      const syncResult = await syncUserOrganizations(user.id, user.email);
+
+      if (syncResult.newMemberships > 0) {
+        console.log(`[OIDC Callback] Synced ${syncResult.newMemberships} new membership(s)`);
+      }
+
+      if (syncResult.acceptedInvitations > 0) {
+        console.log(`[OIDC Callback] Marked ${syncResult.acceptedInvitations} invitation(s) as accepted`);
+      }
+    } catch (syncError) {
+      console.error('[OIDC Callback] Error syncing organizations:', syncError);
+      // Continue even if sync fails - user can still access the app
+    }
+
     // Check if user is a member of any organizations
     const memberships = await db
       .select()
@@ -54,7 +78,7 @@ export async function GET(request: NextRequest) {
     }
 
     // User has at least one organization - redirect to dashboard
-    console.log(`[OIDC Callback] User has ${memberships.length} organization(s) - redirecting to dashboard`);
+    console.log(`[OIDC Callback] User has organization(s) - redirecting to dashboard`);
     return NextResponse.redirect(new URL('/', request.url));
 
   } catch (error) {
