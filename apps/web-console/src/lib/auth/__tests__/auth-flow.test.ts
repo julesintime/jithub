@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { db } from '../../db';
-import { user, session } from '../../db/schema';
+import { user, session, organization, member } from '../../db/schema';
 import { eq } from 'drizzle-orm';
 
 /**
@@ -8,6 +8,62 @@ import { eq } from 'drizzle-orm';
  * Based on E2E tests performed with Playwright
  */
 describe('Authentication Flow', () => {
+  // Cleanup test data after all tests complete
+  afterAll(async () => {
+    console.log('Cleaning up test data...');
+
+    try {
+      // Find test user
+      const testUsers = await db
+        .select()
+        .from(user)
+        .where(eq(user.email, 'testuser@example.com'));
+
+      if (testUsers.length > 0) {
+        const testUserId = testUsers[0].id;
+
+        // Delete test sessions (cascade will handle this, but explicit for clarity)
+        await db.delete(session).where(eq(session.userId, testUserId));
+        console.log('✓ Deleted test sessions');
+
+        // Delete test organization memberships
+        await db.delete(member).where(eq(member.userId, testUserId));
+        console.log('✓ Deleted test organization memberships');
+
+        // Delete test organization (if it exists and has no other members)
+        const testOrgSlug = 'example-com';
+        const testOrgs = await db
+          .select()
+          .from(organization)
+          .where(eq(organization.slug, testOrgSlug));
+
+        if (testOrgs.length > 0) {
+          const remainingMembers = await db
+            .select()
+            .from(member)
+            .where(eq(member.organizationId, testOrgs[0].id));
+
+          if (remainingMembers.length === 0) {
+            await db.delete(organization).where(eq(organization.id, testOrgs[0].id));
+            console.log('✓ Deleted test organization');
+          } else {
+            console.log('⚠ Skipped deleting organization (has other members)');
+          }
+        }
+
+        // Delete test user (cascade will handle related records)
+        await db.delete(user).where(eq(user.email, 'testuser@example.com'));
+        console.log('✓ Deleted test user');
+
+        console.log('✅ Test cleanup completed');
+      } else {
+        console.log('No test user found, cleanup skipped');
+      }
+    } catch (error) {
+      console.error('Error during cleanup:', error);
+      // Don't throw - cleanup errors shouldn't fail tests
+    }
+  });
   describe('User Creation', () => {
     it('should create user in database after Keycloak registration', async () => {
       // Query for test user created during E2E test
@@ -162,5 +218,107 @@ describe('Auth Configuration', () => {
     expect(Array.isArray(users1)).toBe(true);
     expect(Array.isArray(users2)).toBe(true);
     expect(Array.isArray(sessions1)).toBe(true);
+  });
+});
+
+describe('Organization Management', () => {
+  describe('Organization Creation', () => {
+    it('should create organization during onboarding', async () => {
+      // Query for organization created from test user's email domain
+      const orgs = await db
+        .select()
+        .from(organization)
+        .where(eq(organization.slug, 'example-com'))
+        .limit(1);
+
+      expect(orgs).toHaveLength(1);
+      expect(orgs[0].name).toBe('example.com');
+      expect(orgs[0].slug).toBe('example-com');
+      expect(orgs[0].id).toBeTruthy();
+      expect(orgs[0].createdAt).toBeInstanceOf(Date);
+    });
+
+    it('should have proper organization schema structure', async () => {
+      const orgs = await db
+        .select()
+        .from(organization)
+        .where(eq(organization.slug, 'example-com'))
+        .limit(1);
+
+      const testOrg = orgs[0];
+
+      expect(testOrg).toHaveProperty('id');
+      expect(testOrg).toHaveProperty('name');
+      expect(testOrg).toHaveProperty('slug');
+      expect(testOrg).toHaveProperty('logo');
+      expect(testOrg).toHaveProperty('metadata');
+      expect(testOrg).toHaveProperty('createdAt');
+      expect(testOrg).toHaveProperty('updatedAt');
+    });
+
+    it('should store organization metadata', async () => {
+      const orgs = await db
+        .select()
+        .from(organization)
+        .where(eq(organization.slug, 'example-com'))
+        .limit(1);
+
+      if (orgs[0].metadata) {
+        const metadata = JSON.parse(orgs[0].metadata);
+        expect(metadata).toHaveProperty('createdDuringOnboarding');
+        expect(metadata.createdDuringOnboarding).toBe(true);
+      }
+    });
+  });
+
+  describe('Organization Membership', () => {
+    it('should add user as organization owner', async () => {
+      const users = await db
+        .select()
+        .from(user)
+        .where(eq(user.email, 'testuser@example.com'))
+        .limit(1);
+
+      const orgs = await db
+        .select()
+        .from(organization)
+        .where(eq(organization.slug, 'example-com'))
+        .limit(1);
+
+      const members = await db
+        .select()
+        .from(member)
+        .where(eq(member.userId, users[0].id))
+        .where(eq(member.organizationId, orgs[0].id))
+        .limit(1);
+
+      expect(members).toHaveLength(1);
+      expect(members[0].role).toBe('owner');
+      expect(members[0].userId).toBe(users[0].id);
+      expect(members[0].organizationId).toBe(orgs[0].id);
+    });
+
+    it('should have proper member schema structure', async () => {
+      const users = await db
+        .select()
+        .from(user)
+        .where(eq(user.email, 'testuser@example.com'))
+        .limit(1);
+
+      const members = await db
+        .select()
+        .from(member)
+        .where(eq(member.userId, users[0].id))
+        .limit(1);
+
+      const testMember = members[0];
+
+      expect(testMember).toHaveProperty('id');
+      expect(testMember).toHaveProperty('organizationId');
+      expect(testMember).toHaveProperty('userId');
+      expect(testMember).toHaveProperty('role');
+      expect(testMember).toHaveProperty('createdAt');
+      expect(testMember).toHaveProperty('updatedAt');
+    });
   });
 });

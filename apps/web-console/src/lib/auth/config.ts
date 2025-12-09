@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { genericOAuth } from 'better-auth/plugins';
+import { genericOAuth, organization } from 'better-auth/plugins';
 import { keycloak } from 'better-auth/plugins/generic-oauth';
 import { db } from '../db';
 import * as schema from '../db/schema';
@@ -13,6 +13,15 @@ export const auth = betterAuth({
     camelCase: true,
   }),
   plugins: [
+    organization({
+      allowUserToCreateOrganization: true,
+      organizationLimit: 10,
+      roles: {
+        owner: ["create", "read", "update", "delete", "invite", "remove"],
+        admin: ["read", "update", "invite"],
+        member: ["read"],
+      },
+    }),
     genericOAuth({
       config: [
         keycloak({
