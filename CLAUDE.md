@@ -52,65 +52,41 @@ This is an Nx monorepo for a full-stack application with the following tech stac
 - Push to GitHub frequently
 - GitHub issues are the PRIMARY CONTEXT - always read issues first
 
-**Fresh Session Protocol:**
-1. **ALWAYS start by reading GitHub issues**: `gh issue list --label "epic" --state open`
-2. **Read specific issue**: `gh issue view ISSUE_NUMBER`
-3. **Check current branch**: `git status` and `git branch`
-4. **Pull latest**: `git pull origin main`
-5. **Read CLAUDE.md** for project context
-6. **Check .env** for service credentials (already configured)
-7. **Implement from issues** - one issue at a time
-8. **Test with real APIs** - NO mock data (credentials in `.env`)
-9. **Commit frequently**: `git add . && git commit -m "..." && git push`
+**GitHub CLI (`gh`) Usage and issue workflow (concise):**
 
-**Commit Strategy:**
-- Commit frequency: Every 15-30 minutes MINIMUM
-- Use branches for features/fixes
-- DO NOT create temporary files like markdown drafts or "_revised" files
-- Use commits and branches instead of temporary artifacts
-- All context and progress tracked via GitHub issues with common labels
+- `gh` is configured in the workspace — prefer `gh` for quick issue/PR creation and linking, but use the GitHub UI when you need advanced editing.
+- Keep labels short and consistent (lowercase). Avoid all-caps or verbose label names.
+- Prefer a conventional label set that maps well to commit types and conventional changelogs. Suggested labels:
+  - `epic` — large cross-cutting initiative
+  - `feat` — new feature (maps to commit type `feat`)
+  - `fix` — bug fix (maps to `fix`)
+  - `chore` — maintenance tasks (maps to `chore`)
+  - `docs` — documentation
+  - `refactor` — code changes without behavior change
+  - `test` — tests and test infra
+  - `ci` — CI/CD and pipeline work
+  - `migration` — migrations or infra changes
+  - `priority:critical|high|medium|low` — priority buckets
+  - `phase:1|phase:2|phase:3` — project phases
 
-**GitHub CLI (`gh`) Usage:**
-- `gh` CLI is already authenticated and configured
-- ALWAYS use `gh` CLI for creating issues, epics, and PRs
-- Use common labels for consistency: `epic`, `feature`, `bug`, `migration`, `phase:1`, `phase:2`, etc.
-- Create epics immediately after planning - right after finalizing plan
-- Link related issues to epics for organization
-
-**Issue-Driven Development:**
-- GitHub issues serve as the primary tracking mechanism
-- Use common labels consistently (`epic`, `feature`, `bug`, `priority:high/medium/low`, `phase:N`)
-- Record progress and submit updates frequently
-- Issues capture context, session state, and project information
-- **Create epics and issues using `gh` CLI immediately after planning:**
+- Example quick `gh` commands (non-interactive):
   ```bash
-  # Create epic
-  gh issue create --title "[EPIC] Epic Title" \
-    --body "Epic description with phases and goals" \
-    --label "epic,priority:high,phase:1"
-
-  # Create feature issue linked to epic
-  gh issue create --title "Feature: Feature Title" \
-    --body "Description\n\nRelated to #EPIC_NUMBER" \
-    --label "feature,phase:1,priority:high"
-
-  # Create sub-tasks
-  gh issue create --title "Task: Specific Task" \
-    --body "Task details\n\nPart of #FEATURE_NUMBER" \
-    --label "task,phase:1"
+  gh issue create --title "feat: add user profile" --body "Description..." --label "feat,phase:1,priority:high"
+  gh issue create --title "epic: user profiles" --body "Epic description..." --label "epic,priority:high"
+  gh pr create --fill --label "feat"
   ```
-- **Always create GitHub issues right after planning, before implementation**
 
-**Vibe Coding Approach:**
-- Solo developer workflow with AI agents
-- Focus on automation: tests, settings, CI/CD
-- No manual oversight - design for full automation
-- All workflows must be reproducible and automated
+- Keep creation lightweight: create epics when planning is finalized, then create linked feature or task issues under those epics. Link using issue references (e.g. "Part of #123").
+
+- Use labels that match commit convention: prefer `feat`/`fix`/`chore` over verbose `feature`/`bug` for consistency with changelogs and automated release tooling.
+
+
+
 
 **Output Philosophy:**
-- DO NOT output verbose markdown documentation
-- Use GitHub issues for tracking instead
-- DO NOT create workaround files or temporary files
+- DO NOT output verbose markdown reports or summaries
+- DO NOT create workaround files or temporary files without clean-up
+- DO NOT create temporary files like markdown drafts or "_revised" files
 - Use proper git workflow (commits, branches, PRs)
 - Keep documentation minimal and actionable
 

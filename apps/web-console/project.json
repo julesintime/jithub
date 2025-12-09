@@ -5,5 +5,32 @@
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project web-console --web",
-  "targets": {}
+  "targets": {
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/apps/web-console"],
+      "options": {
+        "config": "apps/web-console/vitest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "test:ui": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest --ui --config=apps/web-console/vitest.config.ts"
+      }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "playwright test --config=playwright.config.ts"
+      }
+    },
+    "e2e:ui": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "playwright test --config=playwright.config.ts --ui"
+      }
+    }
+  }
 }

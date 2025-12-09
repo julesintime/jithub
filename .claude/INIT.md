@@ -110,11 +110,37 @@ curl -s https://trigger.xuperson.org | head -n 1
 curl -s https://git.xuperson.org | head -n 1
 ```
 
-## 10. Initial Commit
+## 10. Install Testing Dependencies
+
+```bash
+# Install Vitest for unit and integration tests
+pnpm add -D vitest @vitest/ui @testing-library/react @testing-library/jest-dom jsdom
+
+# Install Playwright for E2E tests
+pnpm add -D @playwright/test
+
+# Install Nx Vitest plugin
+pnpm add -D @nx/vite
+
+# Initialize Playwright
+pnpm dlx playwright install chromium
+```
+
+## 11. Configure Testing
+
+```bash
+# Generate Vitest configuration for web-console
+nx g @nx/vite:configuration web-console --uiFramework=react --testEnvironment=jsdom
+
+# Generate Playwright E2E project (if not exists)
+nx g @nx/playwright:configuration --project=web-console-e2e
+```
+
+## 12. Initial Commit
 
 ```bash
 git add .
-git commit -m "chore: workspace initialization"
+git commit -m "chore: workspace initialization with testing setup"
 git push
 ```
 
@@ -130,7 +156,30 @@ git push
 - [ ] PostgreSQL running
 - [ ] .env verified
 - [ ] Services accessible
+- [ ] Vitest installed and configured
+- [ ] Playwright installed and configured
 - [ ] Initial commit pushed
+
+---
+
+## Testing Commands
+
+```bash
+# Run unit tests
+nx test web-console
+
+# Run tests with UI
+nx test web-console --ui
+
+# Run E2E tests
+nx e2e web-console-e2e
+
+# Run E2E tests in headed mode
+nx e2e web-console-e2e --headed
+
+# Run all tests
+nx run-many --target=test --all
+```
 
 ---
 
