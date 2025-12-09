@@ -98,7 +98,11 @@ export function OnboardingCarousel({
                   {isLastStep ? (
                     <Button onClick={onComplete}>Get Started</Button>
                   ) : (
-                    <Button onClick={scrollNext} disabled={!canScrollNext}>
+                    <Button
+                      onClick={scrollNext}
+                      disabled={!canScrollNext}
+                      data-carousel-next
+                    >
                       Next
                     </Button>
                   )}

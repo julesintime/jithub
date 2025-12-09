@@ -3,12 +3,18 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { OnboardingCarousel, OnboardingStep } from '@/components/onboarding/onboarding-carousel';
+import { OrganizationForm } from '@/components/onboarding/organization-form';
 import { useSession } from '@/lib/auth/client';
 
 export default function OnboardingPage() {
   const router = useRouter();
   const { data: session, isPending } = useSession();
-  const [isLoading, setIsLoading] = useState(false);
+  const [organization, setOrganization] = useState<{
+    id: string;
+    name: string;
+    slug: string;
+    keycloakOrgId: string;
+  } | null>(null);
 
   useEffect(() => {
     // If not authenticated, redirect to home
@@ -17,21 +23,23 @@ export default function OnboardingPage() {
     }
   }, [session, isPending, router]);
 
-  const handleComplete = async () => {
-    setIsLoading(true);
-    try {
-      // Mark onboarding as complete
-      await fetch('/api/onboarding/complete', {
-        method: 'POST',
-      });
+  const handleOrganizationCreated = (org: {
+    id: string;
+    name: string;
+    slug: string;
+    keycloakOrgId: string;
+  }) => {
+    setOrganization(org);
+    // Automatically advance to next step
+    setTimeout(() => {
+      const nextButton = document.querySelector('[data-carousel-next]') as HTMLButtonElement;
+      if (nextButton) nextButton.click();
+    }, 500);
+  };
 
-      // Redirect to dashboard
-      router.push('/');
-    } catch (error) {
-      console.error('Failed to complete onboarding:', error);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleComplete = async () => {
+    // Redirect to dashboard
+    router.push('/');
   };
 
   const onboardingSteps: OnboardingStep[] = [
@@ -83,32 +91,49 @@ export default function OnboardingPage() {
       ),
     },
     {
-      title: 'Your Organization',
-      description: 'You have been added to your organization',
+      title: 'Create Your Organization',
+      description: 'Choose a name for your organization',
       content: (
         <div className="space-y-4">
-          {session?.user?.email && (
-            <div className="rounded-lg border p-4 bg-muted/50">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Email</span>
-                  <span className="text-sm text-muted-foreground">
-                    {session.user.email}
-                  </span>
+          <p className="text-muted-foreground">
+            Create an organization to manage your team, projects, and settings.
+            You'll be the owner and can invite team members later.
+          </p>
+          <OrganizationForm onSuccess={handleOrganizationCreated} />
+        </div>
+      ),
+    },
+    {
+      title: 'Organization Created!',
+      description: 'Your organization is ready to use',
+      content: (
+        <div className="space-y-4">
+          {organization && (
+            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6">
+              <div className="text-center space-y-3">
+                <div className="text-4xl">🎉</div>
+                <div>
+                  <h3 className="text-xl font-semibold">{organization.name}</h3>
+                  <p className="text-sm text-muted-foreground font-mono mt-1">
+                    {organization.slug}
+                  </p>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Organization</span>
-                  <span className="text-sm text-muted-foreground">
-                    {session.user.email.split('@')[1]}
-                  </span>
+              </div>
+              <div className="mt-4 space-y-2 text-sm">
+                <div className="flex items-center justify-between p-2 rounded bg-background/50">
+                  <span className="font-medium">Role</span>
+                  <span className="text-muted-foreground">Owner</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded bg-background/50">
+                  <span className="font-medium">Members</span>
+                  <span className="text-muted-foreground">1 (you)</span>
                 </div>
               </div>
             </div>
           )}
           <p className="text-sm text-muted-foreground">
-            Your organization has been automatically created based on your email
-            domain. You can manage organization settings and invite team members
-            from the dashboard.
+            You can manage organization settings, invite team members, and configure
+            permissions from your dashboard.
           </p>
         </div>
       ),
