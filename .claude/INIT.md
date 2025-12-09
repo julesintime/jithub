@@ -29,7 +29,7 @@ trigger --version
 ## 3. Configure Git
 
 ```bash
-git config --global user.name "Your Name"
+git config --global user.name "Claude Code"
 git config --global user.email "noreply@anthropic.com"
 ```
 

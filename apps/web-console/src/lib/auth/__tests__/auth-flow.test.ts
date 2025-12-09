@@ -9,7 +9,13 @@ import { eq } from 'drizzle-orm';
  */
 describe('Authentication Flow', () => {
   // Cleanup test data after all tests complete
+  // Only run cleanup if CLEANUP_TESTS env var is set
   afterAll(async () => {
+    if (!process.env.CLEANUP_TESTS) {
+      console.log('⏭️  Skipping test cleanup (set CLEANUP_TESTS=1 to enable)');
+      return;
+    }
+
     console.log('Cleaning up test data...');
 
     try {
