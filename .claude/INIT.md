@@ -126,6 +126,62 @@ pnpm add -D @nx/vite
 pnpm dlx playwright install chromium
 ```
 
+## 10. Configure MCP Servers
+
+**MCP Servers to use:**
+- **context7**: Remote HTTP - https://mcp.context7.com/mcp (requires API key)
+- **playwright**: Local stdio - npx @playwright/mcp@latest
+- **nx**: Local stdio - npx nx-mcp@latest
+- **deepwiki**: Remote HTTP - https://mcp.deepwiki.com/mcp
+- **sequential-thinking**: Local stdio - npx -y @modelcontextprotocol/server-sequential-thinking
+
+**Quick setup commands:**
+```bash
+# Add Playwright MCP server
+claude mcp add playwright npx '@playwright/mcp@latest'
+
+# Add Context7 with HTTP transport (requires API key)
+claude mcp add --transport http context7 https://mcp.context7.com/mcp
+
+# Add DeepWiki with HTTP transport
+claude mcp add --transport http deepwiki https://mcp.deepwiki.com/mcp
+
+# Add Sequential Thinking
+claude mcp add sequential-thinking npx '-y @modelcontextprotocol/server-sequential-thinking'
+
+# Add Nx (if available)
+claude mcp add nx npx 'nx-mcp@latest'
+```
+
+**MCP Configuration (.mcp.json):**
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "YOUR_API_KEY"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "nx-mcp": {
+      "command": "npx",
+      "args": ["nx-mcp@latest"]
+    },
+    "deepwiki": {
+      "url": "https://mcp.deepwiki.com/mcp"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    }
+  }
+}
+```
+
 ## 11. Configure Testing
 
 ```bash
@@ -156,6 +212,7 @@ git push
 - [ ] PostgreSQL running
 - [ ] .env verified
 - [ ] Services accessible
+- [ ] MCP servers configured
 - [ ] Vitest installed and configured
 - [ ] Playwright installed and configured
 - [ ] Initial commit pushed

@@ -11,8 +11,8 @@ test.describe('Authentication Flow', () => {
       page.getByText('Welcome to JTT Platform')
     ).toBeVisible();
 
-    // Should show sign-in button
-    const signInButton = page.getByRole('button', {
+    // Should show sign-in button in main content (not header)
+    const signInButton = page.getByRole('main').getByRole('button', {
       name: /sign in with keycloak/i,
     });
     await expect(signInButton).toBeVisible();

@@ -19,7 +19,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'nx serve web-console',
+    command: 'pnpm nx dev web-console',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,

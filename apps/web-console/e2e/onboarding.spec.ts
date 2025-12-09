@@ -7,9 +7,9 @@ test.describe('Onboarding Page (Unauthenticated)', () => {
     // Should redirect to home page
     await page.waitForURL('/');
 
-    // Should show sign-in button
+    // Should show sign-in button in header or main content
     await expect(
-      page.getByRole('button', { name: /sign in with keycloak/i })
+      page.getByRole('banner').getByRole('button', { name: /sign in with keycloak/i })
     ).toBeVisible();
   });
 });
