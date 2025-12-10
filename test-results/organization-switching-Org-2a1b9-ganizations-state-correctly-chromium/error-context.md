@@ -1,93 +1,9 @@
 # Page snapshot
 
 ```yaml
-- generic:
-  - generic [active]:
-    - generic [ref=e3]:
-      - generic [ref=e4]:
-        - generic [ref=e5]:
-          - navigation [ref=e6]:
-            - button "previous" [disabled] [ref=e7]:
-              - img "previous" [ref=e8]
-            - generic [ref=e10]:
-              - generic [ref=e11]: 1/
-              - text: "1"
-            - button "next" [disabled] [ref=e12]:
-              - img "next" [ref=e13]
-          - img
-        - generic [ref=e15]:
-          - generic [ref=e16]:
-            - img [ref=e17]
-            - generic "Latest available version is detected (16.0.8)." [ref=e19]: Next.js 16.0.8
-            - generic [ref=e20]: Turbopack
-          - img
-      - dialog "Build Error" [ref=e22]:
-        - generic [ref=e25]:
-          - generic [ref=e26]:
-            - generic [ref=e27]:
-              - generic [ref=e29]: Build Error
-              - generic [ref=e30]:
-                - button "Copy Error Info" [ref=e31] [cursor=pointer]:
-                  - img [ref=e32]
-                - button "No related documentation found" [disabled] [ref=e34]:
-                  - img [ref=e35]
-                - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e37] [cursor=pointer]:
-                  - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
-                  - img [ref=e38]
-            - generic [ref=e47]: Export Button doesn't exist in target module
-          - generic [ref=e49]:
-            - generic [ref=e51]:
-              - img [ref=e53]
-              - generic [ref=e56]: ./apps/web-console/src/app/organizations/select/page.tsx (6:1)
-              - button "Open in editor" [ref=e57] [cursor=pointer]:
-                - img [ref=e59]
-            - generic [ref=e62]:
-              - generic [ref=e63]: Export
-              - text: Button
-              - generic [ref=e64]: doesn't exist in target module
-              - generic [ref=e65]: 4 |
-              - text: import
-              - generic [ref=e66]: "{ authClient }"
-              - text: from '@/lib/auth/client';
-              - generic [ref=e67]: 5 |
-              - text: import
-              - generic [ref=e68]: "{"
-              - text: OrganizationSwitcher
-              - generic [ref=e69]: "}"
-              - text: from '@/components/organization-switcher'; >
-              - generic [ref=e70]: 6 |
-              - text: import
-              - generic [ref=e71]: "{"
-              - text: Button
-              - generic [ref=e72]: "}"
-              - text: from '@/components/ui/dropdown-menu';
-              - generic [ref=e73]: "|"
-              - text: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-              - generic [ref=e74]: 7 |
-              - text: import
-              - generic [ref=e75]: "{"
-              - text: Loader2
-              - generic [ref=e76]: "}"
-              - text: from 'lucide-react';
-              - generic [ref=e77]: 8 |
-              - generic [ref=e78]: 9 |
-              - text: /**
-              - generic [ref=e79]: The export
-              - text: Button
-              - generic [ref=e80]: was not found in module
-              - generic [ref=e81]: "[project]/apps/web-console/src/components/ui/dropdown-menu.tsx [app-client] (ecmascript)"
-              - generic [ref=e82]: . Did you mean to import
-              - text: DropdownMenu
-              - generic [ref=e83]: "? All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. Import traces: Client Component Browser: ./apps/web-console/src/app/organizations/select/page.tsx [Client Component Browser] ./apps/web-console/src/app/organizations/select/page.tsx [Server Component] Client Component SSR: ./apps/web-console/src/app/organizations/select/page.tsx [Client Component SSR] ./apps/web-console/src/app/organizations/select/page.tsx [Server Component]"
-        - generic [ref=e84]: "1"
-        - generic [ref=e85]: "2"
-    - generic [ref=e90] [cursor=pointer]:
-      - button "Open Next.js Dev Tools" [ref=e91]:
-        - img [ref=e92]
-      - button "Open issues overlay" [ref=e96]:
-        - generic [ref=e97]:
-          - generic [ref=e98]: "0"
-          - generic [ref=e99]: "1"
-        - generic [ref=e100]: Issue
-  - alert [ref=e101]
+- generic [active] [ref=e1]:
+  - img [ref=e3]
+  - button "Open Next.js Dev Tools" [ref=e10] [cursor=pointer]:
+    - img [ref=e11]
+  - alert [ref=e14]
 ```

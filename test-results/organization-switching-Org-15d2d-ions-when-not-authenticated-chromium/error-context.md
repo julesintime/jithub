@@ -48,5 +48,7 @@
           - generic [ref=e51]:
             - generic [ref=e52]: Automation
             - generic [ref=e53]: Trigger.dev + Mastra
-  - alert [ref=e54]
+  - button "Open Next.js Dev Tools" [ref=e59] [cursor=pointer]:
+    - img [ref=e60]
+  - alert [ref=e63]
 ```
