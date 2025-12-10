@@ -340,9 +340,9 @@
                   - generic [ref=e384]: AWS
       - generic [ref=e386]:
         - generic [ref=e387]:
-          - heading "Build your vision" [level=1] [ref=e388]:
+          - heading "Build your visi" [level=1] [ref=e388]:
             - text: Build your
-            - generic [ref=e389]: vision
+            - generic [ref=e389]: visi
           - paragraph [ref=e391]: We bootstrap businesses from idea to launch.
           - button "Learn More" [ref=e393] [cursor=pointer]
         - generic [ref=e395]:

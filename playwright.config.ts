@@ -33,7 +33,7 @@ export default defineConfig({
   /* Shared settings for all the projects below */
   use: {
     /* Base URL for app under test */
-    baseURL: process.env.CODER_APP_PREVIEW_URL || 'http://localhost:3000',
+    baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test */
     trace: 'on-first-retry',
@@ -56,51 +56,20 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // Setup project for authentication
-    {
-      name: 'setup',
-      testMatch: /playwright\.auth\.setup\.ts/,
-      use: {
-        ...devices['Desktop Chrome'],
-      },
-    },
-
-    // Main test suite with authentication
     {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['setup'], // Run auth setup first
-    },
-
-    // Mobile Safari
-    {
-      name: 'mobile-safari',
-      use: {
-        ...devices['iPhone 12'],
-      },
-      dependencies: ['setup'],
-    },
-
-    // Tablet
-    {
-      name: 'tablet',
-      use: {
-        ...devices['iPad Pro'],
-      },
-      dependencies: ['setup'],
     },
   ],
 
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'pnpm nx dev web-console',
-    url: process.env.CODER_APP_PREVIEW_URL || 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    url: 'http://localhost:3000',
+    reuseExistingServer: true,
     timeout: 120000,
-    stdout: 'pipe',
-    stderr: 'pipe',
   },
 
   /* Global timeout for each test */

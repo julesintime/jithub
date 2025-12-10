@@ -346,7 +346,9 @@
                   - generic [ref=e390]: AWS
       - generic [ref=e392]:
         - generic [ref=e393]:
-          - heading "Build your" [level=1] [ref=e394]: Build your
+          - heading "Build your product" [level=1] [ref=e394]:
+            - text: Build your
+            - generic [ref=e395]: product
           - paragraph [ref=e397]: We bootstrap businesses from idea to launch.
           - button "Learn More" [ref=e399] [cursor=pointer]
         - generic [ref=e401]:

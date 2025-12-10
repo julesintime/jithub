@@ -346,9 +346,9 @@
                   - generic [ref=e390]: AWS
       - generic [ref=e392]:
         - generic [ref=e393]:
-          - heading "Build your futu" [level=1] [ref=e394]:
+          - heading "Build your futur" [level=1] [ref=e394]:
             - text: Build your
-            - generic [ref=e395]: futu
+            - generic [ref=e395]: futur
           - paragraph [ref=e397]: We bootstrap businesses from idea to launch.
           - button "Learn More" [ref=e399] [cursor=pointer]
         - generic [ref=e401]:
