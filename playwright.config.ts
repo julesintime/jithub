@@ -11,7 +11,10 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
+    video: 'on',
   },
+  /* Output folder for videos and screenshots */
+  outputDir: 'test-results',
   projects: [
     {
       name: 'chromium',

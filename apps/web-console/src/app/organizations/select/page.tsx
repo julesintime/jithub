@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { authClient } from '@/lib/auth/client';
 import { OrganizationSwitcher } from '@/components/organization-switcher';
-import { Button } from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 
 /**
