@@ -140,7 +140,7 @@ test.describe('Organization Management - Real API Calls', () => {
     ).toBeVisible();
 
     // Should show at least one organization
-    const orgButtons = page.locator('button:has-text("/")''); // Slug format
+    const orgButtons = page.locator('button:has-text("/")'); // Slug format
     await expect(orgButtons.first()).toBeVisible();
   });
 

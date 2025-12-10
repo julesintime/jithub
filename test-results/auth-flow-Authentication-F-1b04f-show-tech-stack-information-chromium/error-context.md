@@ -1,0 +1,593 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e6]:
+        - link "Xuperson Institute Logo" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "Xuperson Institute Logo" [ref=e10]
+        - generic [ref=e11]:
+          - button "Xuperson" [ref=e13]:
+            - text: Xuperson
+            - img [ref=e14]
+          - button "Frameworks" [ref=e17]:
+            - text: Frameworks
+            - img [ref=e18]
+          - link "Formulas" [ref=e21] [cursor=pointer]:
+            - /url: /formulas
+          - link "Founders" [ref=e23] [cursor=pointer]:
+            - /url: /founders
+          - link "Blog" [ref=e25] [cursor=pointer]:
+            - /url: /blog
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - button "System theme" [ref=e28]:
+              - img [ref=e30]
+            - button "Light theme" [ref=e32]:
+              - img [ref=e33]
+            - button "Dark theme" [ref=e39]:
+              - img [ref=e40]
+          - link "Sign In" [ref=e42] [cursor=pointer]:
+            - /url: /login
+          - link "Browse Formulas" [ref=e43] [cursor=pointer]:
+            - /url: https://xuperson.net
+    - main [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e51]:
+          - generic [ref=e54]: Entrepreneurship
+          - generic [ref=e62]:
+            - generic [ref=e63]: a
+            - generic [ref=e64]: s
+            - generic [ref=e65]: _
+            - generic [ref=e66]: C
+            - generic [ref=e67]: o
+            - generic [ref=e68]: d
+            - generic [ref=e69]: e
+          - generic [ref=e74]:
+            - button "How does Entrepreneurship as Code compress a 6-month venture launch into 48 hours?" [ref=e75]
+            - button "What framework helps entrepreneurs make decisions under radical uncertainty?" [ref=e76]
+            - button "How does an AI Attache handle supplier negotiations while founders focus on product?" [ref=e77]
+            - button "Can Expertise Exchange match a startup with the right fractional CTO in minutes?" [ref=e78]
+            - button "What can an AI-native venture do that traditional startups cannot?" [ref=e79]
+            - button "How does Explore-Educate-Emerge create a complete entrepreneurship ecosystem?" [ref=e80]
+            - button "Which academic theories power the AINE framework?" [ref=e81]
+            - button "How does Bootstrap Infrastructure reduce cloud costs by 90% for new ventures?" [ref=e82]
+          - search "Search frameworks and methodologies" [ref=e84]:
+            - generic [ref=e85]: Ask about frameworks, ventures, or AI-native methodology
+            - textbox "Ask about frameworks, ventures, or AI-native methodology" [ref=e86]:
+              - /placeholder: Ask about our frameworks, venture portfolio, or AI-native methodology...
+            - generic [ref=e87]: Enter your question and press Enter or click the send button
+            - button "Submit search query" [ref=e88]:
+              - img [ref=e89]
+        - img [ref=e93]
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e99]:
+            - generic:
+              - img
+            - generic [ref=e105]: Symbiotic Accord System
+            - img [ref=e106]
+          - heading "An Attaché for Everyone" [level=2] [ref=e108]
+          - paragraph [ref=e109]: The AI Attache operates as an intelligent delegate—autonomous, automatic, or assisted—enabling entrepreneurs to scale expertise without scaling headcount.
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e112]: 🔍
+              - generic [ref=e113]:
+                - generic [ref=e114]: Auto-Matching (SAS-AM)
+                - generic [ref=e115]: Semantic discovery of expertise demand/supply
+            - generic [ref=e116]:
+              - generic [ref=e117]: ⚡
+              - generic [ref=e118]:
+                - generic [ref=e119]: Smart-Assembling (SAS-SA)
+                - generic [ref=e120]: Automated negotiation and contracting
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - heading "Delegation Modes" [level=3] [ref=e126]
+            - generic [ref=e127]:
+              - generic [ref=e128]: Autonomous Mode
+              - generic [ref=e129]: AI acts independently within defined boundaries
+            - generic [ref=e130]:
+              - generic [ref=e131]: Automatic Mode
+              - generic [ref=e132]: Routine tasks handled without intervention
+            - generic [ref=e133]:
+              - generic [ref=e134]: Assisted Mode
+              - generic [ref=e135]: Human-AI collaboration with founder control
+          - generic [ref=e136]:
+            - link "Start Building" [ref=e137] [cursor=pointer]:
+              - /url: https://xuperson.net/programs
+              - generic [ref=e138]:
+                - text: Start Building
+                - img [ref=e139]
+            - button "Learn More" [ref=e141]:
+              - generic [ref=e143]: Learn More
+      - generic [ref=e148]:
+        - generic [ref=e149]:
+          - heading "Trusted by Alumni Network" [level=2] [ref=e150]:
+            - text: Trusted by
+            - generic [ref=e151]:
+              - generic [ref=e152]: Alumni Network
+              - generic [ref=e153]:
+                - generic [ref=e154]:
+                  - generic [ref=e155]: A
+                  - generic [ref=e156]: l
+                  - generic [ref=e157]: u
+                  - generic [ref=e158]: m
+                  - generic [ref=e159]: "n"
+                  - generic [ref=e160]: i
+                - generic [ref=e162]:
+                  - generic [ref=e163]: "N"
+                  - generic [ref=e164]: e
+                  - generic [ref=e165]: t
+                  - generic [ref=e166]: w
+                  - generic [ref=e167]: o
+                  - generic [ref=e168]: r
+                  - generic [ref=e169]: k
+          - paragraph [ref=e170]: Powered by proven frameworks and cutting-edge technology
+        - generic [ref=e172]:
+          - generic [ref=e173]:
+            - generic [ref=e174]:
+              - figure [ref=e175] [cursor=pointer]:
+                - generic [ref=e176]:
+                  - generic [ref=e177]: ▲
+                  - generic [ref=e178]: Vercel
+              - figure [ref=e179] [cursor=pointer]:
+                - generic [ref=e180]:
+                  - generic [ref=e181]: ▽
+                  - generic [ref=e182]: Next.js
+              - figure [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: ⚛
+                  - generic [ref=e186]: React
+            - generic [ref=e187]:
+              - figure [ref=e188] [cursor=pointer]:
+                - generic [ref=e189]:
+                  - generic [ref=e190]: ▲
+                  - generic [ref=e191]: Vercel
+              - figure [ref=e192] [cursor=pointer]:
+                - generic [ref=e193]:
+                  - generic [ref=e194]: ▽
+                  - generic [ref=e195]: Next.js
+              - figure [ref=e196] [cursor=pointer]:
+                - generic [ref=e197]:
+                  - generic [ref=e198]: ⚛
+                  - generic [ref=e199]: React
+            - generic [ref=e200]:
+              - figure [ref=e201] [cursor=pointer]:
+                - generic [ref=e202]:
+                  - generic [ref=e203]: ▲
+                  - generic [ref=e204]: Vercel
+              - figure [ref=e205] [cursor=pointer]:
+                - generic [ref=e206]:
+                  - generic [ref=e207]: ▽
+                  - generic [ref=e208]: Next.js
+              - figure [ref=e209] [cursor=pointer]:
+                - generic [ref=e210]:
+                  - generic [ref=e211]: ⚛
+                  - generic [ref=e212]: React
+            - generic [ref=e213]:
+              - figure [ref=e214] [cursor=pointer]:
+                - generic [ref=e215]:
+                  - generic [ref=e216]: ▲
+                  - generic [ref=e217]: Vercel
+              - figure [ref=e218] [cursor=pointer]:
+                - generic [ref=e219]:
+                  - generic [ref=e220]: ▽
+                  - generic [ref=e221]: Next.js
+              - figure [ref=e222] [cursor=pointer]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]: ⚛
+                  - generic [ref=e225]: React
+          - generic [ref=e226]:
+            - generic [ref=e227]:
+              - figure [ref=e228] [cursor=pointer]:
+                - generic [ref=e229]:
+                  - generic [ref=e230]: TS
+                  - generic [ref=e231]: TypeScript
+              - figure [ref=e232] [cursor=pointer]:
+                - generic [ref=e233]:
+                  - generic [ref=e234]: 🎨
+                  - generic [ref=e235]: Tailwind
+              - figure [ref=e236] [cursor=pointer]:
+                - generic [ref=e237]:
+                  - generic [ref=e238]: 💳
+                  - generic [ref=e239]: Stripe
+            - generic [ref=e240]:
+              - figure [ref=e241] [cursor=pointer]:
+                - generic [ref=e242]:
+                  - generic [ref=e243]: TS
+                  - generic [ref=e244]: TypeScript
+              - figure [ref=e245] [cursor=pointer]:
+                - generic [ref=e246]:
+                  - generic [ref=e247]: 🎨
+                  - generic [ref=e248]: Tailwind
+              - figure [ref=e249] [cursor=pointer]:
+                - generic [ref=e250]:
+                  - generic [ref=e251]: 💳
+                  - generic [ref=e252]: Stripe
+            - generic [ref=e253]:
+              - figure [ref=e254] [cursor=pointer]:
+                - generic [ref=e255]:
+                  - generic [ref=e256]: TS
+                  - generic [ref=e257]: TypeScript
+              - figure [ref=e258] [cursor=pointer]:
+                - generic [ref=e259]:
+                  - generic [ref=e260]: 🎨
+                  - generic [ref=e261]: Tailwind
+              - figure [ref=e262] [cursor=pointer]:
+                - generic [ref=e263]:
+                  - generic [ref=e264]: 💳
+                  - generic [ref=e265]: Stripe
+            - generic [ref=e266]:
+              - figure [ref=e267] [cursor=pointer]:
+                - generic [ref=e268]:
+                  - generic [ref=e269]: TS
+                  - generic [ref=e270]: TypeScript
+              - figure [ref=e271] [cursor=pointer]:
+                - generic [ref=e272]:
+                  - generic [ref=e273]: 🎨
+                  - generic [ref=e274]: Tailwind
+              - figure [ref=e275] [cursor=pointer]:
+                - generic [ref=e276]:
+                  - generic [ref=e277]: 💳
+                  - generic [ref=e278]: Stripe
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - figure [ref=e281] [cursor=pointer]:
+                - generic [ref=e282]:
+                  - generic [ref=e283]: 🤖
+                  - generic [ref=e284]: OpenAI
+              - figure [ref=e285] [cursor=pointer]:
+                - generic [ref=e286]:
+                  - generic [ref=e287]: 🍃
+                  - generic [ref=e288]: MongoDB
+              - figure [ref=e289] [cursor=pointer]:
+                - generic [ref=e290]:
+                  - generic [ref=e291]: ⚡
+                  - generic [ref=e292]: Supabase
+            - generic [ref=e293]:
+              - figure [ref=e294] [cursor=pointer]:
+                - generic [ref=e295]:
+                  - generic [ref=e296]: 🤖
+                  - generic [ref=e297]: OpenAI
+              - figure [ref=e298] [cursor=pointer]:
+                - generic [ref=e299]:
+                  - generic [ref=e300]: 🍃
+                  - generic [ref=e301]: MongoDB
+              - figure [ref=e302] [cursor=pointer]:
+                - generic [ref=e303]:
+                  - generic [ref=e304]: ⚡
+                  - generic [ref=e305]: Supabase
+            - generic [ref=e306]:
+              - figure [ref=e307] [cursor=pointer]:
+                - generic [ref=e308]:
+                  - generic [ref=e309]: 🤖
+                  - generic [ref=e310]: OpenAI
+              - figure [ref=e311] [cursor=pointer]:
+                - generic [ref=e312]:
+                  - generic [ref=e313]: 🍃
+                  - generic [ref=e314]: MongoDB
+              - figure [ref=e315] [cursor=pointer]:
+                - generic [ref=e316]:
+                  - generic [ref=e317]: ⚡
+                  - generic [ref=e318]: Supabase
+            - generic [ref=e319]:
+              - figure [ref=e320] [cursor=pointer]:
+                - generic [ref=e321]:
+                  - generic [ref=e322]: 🤖
+                  - generic [ref=e323]: OpenAI
+              - figure [ref=e324] [cursor=pointer]:
+                - generic [ref=e325]:
+                  - generic [ref=e326]: 🍃
+                  - generic [ref=e327]: MongoDB
+              - figure [ref=e328] [cursor=pointer]:
+                - generic [ref=e329]:
+                  - generic [ref=e330]: ⚡
+                  - generic [ref=e331]: Supabase
+          - generic [ref=e332]:
+            - generic [ref=e333]:
+              - figure [ref=e334] [cursor=pointer]:
+                - generic [ref=e335]:
+                  - generic [ref=e336]: ☁️
+                  - generic [ref=e337]: Cloudflare
+              - figure [ref=e338] [cursor=pointer]:
+                - generic [ref=e339]:
+                  - generic [ref=e340]: 🐳
+                  - generic [ref=e341]: Docker
+              - figure [ref=e342] [cursor=pointer]:
+                - generic [ref=e343]:
+                  - generic [ref=e344]: ☁️
+                  - generic [ref=e345]: AWS
+            - generic [ref=e346]:
+              - figure [ref=e347] [cursor=pointer]:
+                - generic [ref=e348]:
+                  - generic [ref=e349]: ☁️
+                  - generic [ref=e350]: Cloudflare
+              - figure [ref=e351] [cursor=pointer]:
+                - generic [ref=e352]:
+                  - generic [ref=e353]: 🐳
+                  - generic [ref=e354]: Docker
+              - figure [ref=e355] [cursor=pointer]:
+                - generic [ref=e356]:
+                  - generic [ref=e357]: ☁️
+                  - generic [ref=e358]: AWS
+            - generic [ref=e359]:
+              - figure [ref=e360] [cursor=pointer]:
+                - generic [ref=e361]:
+                  - generic [ref=e362]: ☁️
+                  - generic [ref=e363]: Cloudflare
+              - figure [ref=e364] [cursor=pointer]:
+                - generic [ref=e365]:
+                  - generic [ref=e366]: 🐳
+                  - generic [ref=e367]: Docker
+              - figure [ref=e368] [cursor=pointer]:
+                - generic [ref=e369]:
+                  - generic [ref=e370]: ☁️
+                  - generic [ref=e371]: AWS
+            - generic [ref=e372]:
+              - figure [ref=e373] [cursor=pointer]:
+                - generic [ref=e374]:
+                  - generic [ref=e375]: ☁️
+                  - generic [ref=e376]: Cloudflare
+              - figure [ref=e377] [cursor=pointer]:
+                - generic [ref=e378]:
+                  - generic [ref=e379]: 🐳
+                  - generic [ref=e380]: Docker
+              - figure [ref=e381] [cursor=pointer]:
+                - generic [ref=e382]:
+                  - generic [ref=e383]: ☁️
+                  - generic [ref=e384]: AWS
+      - generic [ref=e386]:
+        - generic [ref=e387]:
+          - heading "Build your vision" [level=1] [ref=e388]:
+            - text: Build your
+            - generic [ref=e389]: vision
+          - paragraph [ref=e391]: We bootstrap businesses from idea to launch.
+          - button "Learn More" [ref=e393] [cursor=pointer]
+        - generic [ref=e395]:
+          - img "Logo" [ref=e397]
+          - generic [ref=e398]:
+            - img [ref=e400]
+            - img [ref=e403]
+            - img [ref=e406]
+            - img [ref=e409]
+            - img [ref=e412]
+            - img [ref=e415]
+          - generic [ref=e417]:
+            - img [ref=e419]
+            - img [ref=e422]
+            - img [ref=e425]
+            - img [ref=e428]
+            - img [ref=e431]
+            - img [ref=e434]
+          - generic [ref=e436]:
+            - img [ref=e438]
+            - img [ref=e441]
+            - img [ref=e444]
+            - img "icon" [ref=e447]
+            - img "icon" [ref=e449]
+      - generic [ref=e450]:
+        - img:
+          - img
+        - generic [ref=e452]:
+          - generic [ref=e453]:
+            - generic [ref=e454]:
+              - img [ref=e456]
+              - img [ref=e464]
+              - img [ref=e468]
+              - img [ref=e471]
+              - img [ref=e476]
+            - img "Logo" [ref=e483]
+          - img
+          - img
+          - img
+          - img
+          - img
+        - generic [ref=e485]:
+          - heading "Orchestrate agents 10x awesome" [level=1] [ref=e486]:
+            - generic [ref=e487]:
+              - text: Orchestrate agents 10x
+              - generic [ref=e490]: awesome
+          - paragraph [ref=e491]: Harness the power of AI to transform your ideas into reality. Connect multiple data sources, process information intelligently, and deliver exceptional user experiences.
+      - generic [ref=e495]:
+        - generic [ref=e496]:
+          - heading "Explore" [level=3] [ref=e500]:
+            - generic [ref=e501]:
+              - generic [ref=e502]: Explore
+              - text: Explore
+          - generic [ref=e504]:
+            - paragraph [ref=e505]: Advancing entrepreneurship science through rigorous research at xuperson.org
+            - generic [ref=e506]:
+              - generic [ref=e507]: 📚 AI-Native Entrepreneurship (AINE) framework development
+              - generic [ref=e508]: 🔬 Symbiotic Accord System architecture research
+              - generic [ref=e509]: 📖 Effectuation and Bricolage in AI contexts
+              - generic [ref=e510]: 🎯 Design Science Research methodology
+              - generic [ref=e511]: 📝 Peer-reviewed publications and conference proceedings
+            - generic [ref=e512]:
+              - img "Explore image 1" [ref=e513]
+              - img "Explore image 2" [ref=e514]
+        - generic [ref=e515]:
+          - heading "Educate" [level=3] [ref=e519]:
+            - generic [ref=e520]:
+              - generic [ref=e521]: Educate
+              - text: Educate
+          - generic [ref=e523]:
+            - paragraph [ref=e524]: Building the next generation of AI-native founders at xuperson.net
+            - generic [ref=e525]:
+              - generic [ref=e526]: 🎓 AINE Methodology certification programs
+              - generic [ref=e527]: 💻 Entrepreneurship as Code bootcamps
+              - generic [ref=e528]: 🧠 Lean Startup + Effectuation workshops
+              - generic [ref=e529]: 🌍 Cultural Intelligence for global ventures
+              - generic [ref=e530]: 🤝 Alumni network and mentor matching
+            - generic [ref=e531]:
+              - img "Educate image 1" [ref=e532]
+              - img "Educate image 2" [ref=e533]
+        - generic [ref=e534]:
+          - heading "Emerge" [level=3] [ref=e538]:
+            - generic [ref=e539]:
+              - generic [ref=e540]: Emerge
+              - text: Emerge
+          - generic [ref=e542]:
+            - paragraph [ref=e543]: Portfolio of AI-native ventures bootstrapped through our frameworks
+            - generic [ref=e544]:
+              - generic [ref=e545]: 🚀 SaaS & Technology platforms
+              - generic [ref=e546]: 💼 B2B services & fractional expertise
+              - generic [ref=e547]: 🛒 Consumer brands & D2C ventures
+              - generic [ref=e548]: 📱 EdTech & knowledge products
+              - generic [ref=e549]: 🎨 Creator economy tools
+            - paragraph [ref=e550]: No external funding required. Framework-driven launch. 48-hour MVP methodology.
+            - generic [ref=e551]:
+              - img "Emerge image 1" [ref=e552]
+              - img "Emerge image 2" [ref=e553]
+      - generic [ref=e557]:
+        - generic [ref=e558]:
+          - generic [ref=e560]:
+            - generic:
+              - img
+            - generic [ref=e566]: Development Workflow
+            - img [ref=e567]
+          - heading "Watch It Come to Life" [level=2] [ref=e570]:
+            - text: Watch It Come to
+            - generic [ref=e572]:
+              - img
+              - img
+              - img
+              - img
+              - img
+              - img
+              - img
+              - img
+              - strong [ref=e573]: Life
+          - paragraph [ref=e575]: See how effortlessly you can set up and deploy modern web applications with our streamlined development experience.
+        - generic [ref=e577]:
+          - generic [ref=e578]:
+            - generic [ref=e579]:
+              - img [ref=e580]
+              - paragraph [ref=e582]: localhost:3000
+            - generic [ref=e583]: App Running Successfully!
+          - generic [ref=e584]:
+            - img [ref=e586]
+            - generic [ref=e593]:
+              - generic [ref=e594]: npx create-next-app@latest my-portfolio
+              - generic [ref=e596]: ✔ Would you like to use TypeScript?
+              - generic [ref=e597]: "Yes"
+              - generic [ref=e598]: ✔ Would you like to use Tailwind CSS?
+              - generic [ref=e599]: "Yes"
+              - generic [ref=e600]: ✔ Would you like to use App Router?
+              - generic [ref=e601]: "Yes"
+              - generic [ref=e602]: Creating a new Next.js app in my-portfolio...
+              - generic [ref=e603]: Installing packages. This might take a minute...
+              - generic [ref=e604]: ✓ Packages installed successfully
+              - generic [ref=e605]: ✓ Project created successfully!
+              - generic [ref=e606]: cd my-portfolio && npm run dev
+              - generic [ref=e607]: ▲ Next.js 15.0.0
+              - generic [ref=e608]: "- Local: http://localhost:3000"
+              - generic [ref=e609]: ✓ Ready in 1.2s
+      - generic [ref=e613]:
+        - generic [ref=e614]:
+          - heading "1 AI-Native Entrepreneurship" [level=3] [ref=e615]:
+            - button "1 AI-Native Entrepreneurship" [expanded] [ref=e616] [cursor=pointer]:
+              - generic [ref=e617]:
+                - paragraph [ref=e618]: "1"
+                - heading "AI-Native Entrepreneurship" [level=3] [ref=e619]
+          - region "1 AI-Native Entrepreneurship" [ref=e620]:
+            - generic [ref=e621]: AI-Native Entrepreneurship (AINE) is a paradigm where AI is embedded in strategy, operations, and value co-creation from day one—not retrofitted as a tool. The institute develops frameworks enabling ventures to be AI-native from inception.
+        - heading "2 How We Help Entrepreneurs" [level=3] [ref=e623]:
+          - button "2 How We Help Entrepreneurs" [ref=e624] [cursor=pointer]:
+            - generic [ref=e625]:
+              - paragraph [ref=e626]: "2"
+              - heading "How We Help Entrepreneurs" [level=3] [ref=e627]
+        - heading "3 The Three Pillars" [level=3] [ref=e629]:
+          - button "3 The Three Pillars" [ref=e630] [cursor=pointer]:
+            - generic [ref=e631]:
+              - paragraph [ref=e632]: "3"
+              - heading "The Three Pillars" [level=3] [ref=e633]
+        - heading "4 What is an AI Attache" [level=3] [ref=e635]:
+          - button "4 What is an AI Attache" [ref=e636] [cursor=pointer]:
+            - generic [ref=e637]:
+              - paragraph [ref=e638]: "4"
+              - heading "What is an AI Attache" [level=3] [ref=e639]
+        - heading "5 Expertise-as-a-Service" [level=3] [ref=e641]:
+          - button "5 Expertise-as-a-Service" [ref=e642] [cursor=pointer]:
+            - generic [ref=e643]:
+              - paragraph [ref=e644]: "5"
+              - heading "Expertise-as-a-Service" [level=3] [ref=e645]
+        - heading "6 EMERGE vs Incubation" [level=3] [ref=e647]:
+          - button "6 EMERGE vs Incubation" [ref=e648] [cursor=pointer]:
+            - generic [ref=e649]:
+              - paragraph [ref=e650]: "6"
+              - heading "EMERGE vs Incubation" [level=3] [ref=e651]
+        - heading "7 Academic Foundations" [level=3] [ref=e653]:
+          - button "7 Academic Foundations" [ref=e654] [cursor=pointer]:
+            - generic [ref=e655]:
+              - paragraph [ref=e656]: "7"
+              - heading "Academic Foundations" [level=3] [ref=e657]
+        - heading "8 Joining the Institute" [level=3] [ref=e659]:
+          - button "8 Joining the Institute" [ref=e660] [cursor=pointer]:
+            - generic [ref=e661]:
+              - paragraph [ref=e662]: "8"
+              - heading "Joining the Institute" [level=3] [ref=e663]
+      - generic [ref=e666]:
+        - generic [ref=e667]:
+          - img [ref=e668]
+          - paragraph [ref=e669]: © 2025 Xuperson Institute. All rights reserved.
+        - generic [ref=e670]:
+          - generic [ref=e672]:
+            - heading "Three F's" [level=3] [ref=e673]
+            - list [ref=e674]:
+              - listitem [ref=e675]:
+                - link "Frameworks" [ref=e676] [cursor=pointer]:
+                  - /url: /frameworks
+              - listitem [ref=e677]:
+                - link "Formulas" [ref=e678] [cursor=pointer]:
+                  - /url: /formulas
+              - listitem [ref=e679]:
+                - link "Founders" [ref=e680] [cursor=pointer]:
+                  - /url: /founders
+          - generic [ref=e682]:
+            - heading "Frameworks" [level=3] [ref=e683]
+            - list [ref=e684]:
+              - listitem [ref=e685]:
+                - link "AINE" [ref=e686] [cursor=pointer]:
+                  - /url: /frameworks/aine
+              - listitem [ref=e687]:
+                - link "SAS" [ref=e688] [cursor=pointer]:
+                  - /url: /frameworks/sas
+              - listitem [ref=e689]:
+                - link "EaaS" [ref=e690] [cursor=pointer]:
+                  - /url: /frameworks/eaas
+              - listitem [ref=e691]:
+                - link "EaC" [ref=e692] [cursor=pointer]:
+                  - /url: /frameworks/eac
+          - generic [ref=e694]:
+            - heading "Founders" [level=3] [ref=e695]
+            - list [ref=e696]:
+              - listitem [ref=e697]:
+                - link "All Founders" [ref=e698] [cursor=pointer]:
+                  - /url: /founders
+              - listitem [ref=e699]:
+                - link "CFEC Club" [ref=e700] [cursor=pointer]:
+                  - /url: /founders/cfec-club
+              - listitem [ref=e701]:
+                - link "Trinita" [ref=e702] [cursor=pointer]:
+                  - /url: /founders/trinita
+              - listitem [ref=e703]:
+                - link "Jitota" [ref=e704] [cursor=pointer]:
+                  - /url: /founders/jitota
+          - generic [ref=e706]:
+            - heading "Connect" [level=3] [ref=e707]
+            - list [ref=e708]:
+              - listitem [ref=e709]:
+                - link "LinkedIn" [ref=e710] [cursor=pointer]:
+                  - /url: https://linkedin.com/company/xuperson
+                  - img [ref=e711]
+                  - text: LinkedIn
+              - listitem [ref=e715]:
+                - link "GitHub" [ref=e716] [cursor=pointer]:
+                  - /url: https://github.com/xuperson
+              - listitem [ref=e717]:
+                - link "Contact" [ref=e718] [cursor=pointer]:
+                  - /url: /contact
+  - alert [ref=e719]
+```
