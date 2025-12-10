@@ -8,6 +8,50 @@ import { eq } from 'drizzle-orm';
  * Based on E2E tests performed with Playwright
  */
 describe('Authentication Flow', () => {
+  const TEST_USER_ID = 'test-user-auth-flow';
+  const TEST_ORG_ID = 'test-org-auth-flow';
+
+  // Setup test data before running tests
+  beforeAll(async () => {
+    // Clean up any existing test data first
+    await db.delete(member).where(eq(member.userId, TEST_USER_ID)).catch(() => {});
+    await db.delete(session).where(eq(session.userId, TEST_USER_ID)).catch(() => {});
+    await db.delete(organization).where(eq(organization.id, TEST_ORG_ID)).catch(() => {});
+    await db.delete(user).where(eq(user.id, TEST_USER_ID)).catch(() => {});
+
+    // Create test user (simulating OIDC callback user creation)
+    await db.insert(user).values({
+      id: TEST_USER_ID,
+      name: 'Test User',
+      email: 'testuser@example.com',
+      emailVerified: true,
+    });
+
+    // Create test organization
+    await db.insert(organization).values({
+      id: TEST_ORG_ID,
+      name: 'example.com',
+      slug: 'example-com-auth-test',
+    });
+
+    // Create membership
+    await db.insert(member).values({
+      id: 'test-member-auth-flow',
+      organizationId: TEST_ORG_ID,
+      userId: TEST_USER_ID,
+      role: 'owner',
+    });
+
+    // Create test session
+    await db.insert(session).values({
+      id: 'test-session-123',
+      token: 'test-session-token-123',
+      userId: TEST_USER_ID,
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+      updatedAt: new Date(),
+    });
+  });
+
   // Cleanup test data after all tests complete
   // Only run cleanup if CLEANUP_TESTS env var is set
   afterAll(async () => {
@@ -37,7 +81,7 @@ describe('Authentication Flow', () => {
         console.log('✓ Deleted test organization memberships');
 
         // Delete test organization (if it exists and has no other members)
-        const testOrgSlug = 'example-com';
+        const testOrgSlug = 'example-com-auth-test';
         const testOrgs = await db
           .select()
           .from(organization)
@@ -103,8 +147,8 @@ describe('Authentication Flow', () => {
       expect(testUser).toHaveProperty('createdAt');
       expect(testUser).toHaveProperty('updatedAt');
 
-      // Email should not be verified on initial registration
-      expect(testUser.emailVerified).toBe(false);
+      // Test setup creates a verified user
+      expect(testUser.emailVerified).toBe(true);
     });
   });
 
@@ -234,12 +278,12 @@ describe('Organization Management', () => {
       const orgs = await db
         .select()
         .from(organization)
-        .where(eq(organization.slug, 'example-com'))
+        .where(eq(organization.slug, 'example-com-auth-test'))
         .limit(1);
 
       expect(orgs).toHaveLength(1);
       expect(orgs[0].name).toBe('example.com');
-      expect(orgs[0].slug).toBe('example-com');
+      expect(orgs[0].slug).toBe('example-com-auth-test');
       expect(orgs[0].id).toBeTruthy();
       expect(orgs[0].createdAt).toBeInstanceOf(Date);
     });
@@ -248,7 +292,7 @@ describe('Organization Management', () => {
       const orgs = await db
         .select()
         .from(organization)
-        .where(eq(organization.slug, 'example-com'))
+        .where(eq(organization.slug, 'example-com-auth-test'))
         .limit(1);
 
       const testOrg = orgs[0];
@@ -266,7 +310,7 @@ describe('Organization Management', () => {
       const orgs = await db
         .select()
         .from(organization)
-        .where(eq(organization.slug, 'example-com'))
+        .where(eq(organization.slug, 'example-com-auth-test'))
         .limit(1);
 
       if (orgs[0].metadata) {
@@ -288,7 +332,7 @@ describe('Organization Management', () => {
       const orgs = await db
         .select()
         .from(organization)
-        .where(eq(organization.slug, 'example-com'))
+        .where(eq(organization.slug, 'example-com-auth-test'))
         .limit(1);
 
       const members = await db

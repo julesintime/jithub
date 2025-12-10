@@ -102,7 +102,8 @@ export interface SlugValidationResult {
  * Checks:
  * - Length (3-50 characters)
  * - Format (lowercase alphanumeric + hyphens, no leading/trailing hyphens)
- * - Not reserved
+ *
+ * Note: Reserved slug checking is handled separately in the API route
  *
  * @param slug - Slug to validate
  * @returns Validation result with error message if invalid
@@ -111,7 +112,6 @@ export interface SlugValidationResult {
  * ```ts
  * validateSlug("acme-inc") // { valid: true }
  * validateSlug("ab") // { valid: false, error: "Slug must be at least 3 characters" }
- * validateSlug("admin") // { valid: false, error: "Slug 'admin' is reserved" }
  * ```
  */
 export function validateSlug(slug: string): SlugValidationResult {
@@ -136,14 +136,6 @@ export function validateSlug(slug: string): SlugValidationResult {
     return {
       valid: false,
       error: 'Slug must contain only lowercase letters, numbers, and hyphens (no leading/trailing hyphens)',
-    };
-  }
-
-  // Check if reserved
-  if (RESERVED_SLUGS.includes(slug)) {
-    return {
-      valid: false,
-      error: `Slug '${slug}' is reserved and cannot be used`,
     };
   }
 

@@ -14,7 +14,7 @@ describe('GET /api/organization/check-slug', () => {
       id: TEST_ORG_ID,
       name: 'Test Company Exists',
       slug: TEST_SLUG,
-    });
+    }).onConflictDoNothing();
   });
 
   afterAll(async () => {
