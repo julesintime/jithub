@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth/config';
 import { db } from '@/lib/db';
-import { organization, member, invitation } from '@/lib/db/schema';
+import { organization, member, invitation, user } from '@/lib/db/schema';
 import { eq, and } from 'drizzle-orm';
 import { generateId } from 'better-auth';
 import { KeycloakOrganizationClient } from '@/lib/keycloak/client';
@@ -126,23 +126,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 5. Check if user is already a member
-    const existingMember = await db
+    // 5. Check if invitee is already a member
+    // First, check if user exists with this email
+    const inviteeUser = await db
       .select()
-      .from(member)
-      .where(
-        and(
-          eq(member.organizationId, organizationId),
-          eq(member.userId, session.user.id)
-        )
-      )
+      .from(user)
+      .where(eq(user.email, email))
       .limit(1);
 
-    if (existingMember.length > 0) {
-      return NextResponse.json(
-        { error: 'User is already a member of this organization' },
-        { status: 409 }
-      );
+    if (inviteeUser.length > 0) {
+      // User exists, check if they're already a member
+      const existingMember = await db
+        .select()
+        .from(member)
+        .where(
+          and(
+            eq(member.organizationId, organizationId),
+            eq(member.userId, inviteeUser[0].id)
+          )
+        )
+        .limit(1);
+
+      if (existingMember.length > 0) {
+        return NextResponse.json(
+          { error: 'User is already a member of this organization' },
+          { status: 409 }
+        );
+      }
     }
 
     // 6. Check if there's already a pending invitation

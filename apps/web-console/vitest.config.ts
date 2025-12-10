@@ -7,8 +7,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
-    setupFiles: ['./apps/web-console/src/test/setup.ts'],
-    include: ['apps/web-console/src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    setupFiles: [path.join(__dirname, 'src/test/setup.ts')],
+    include: [path.join(__dirname, 'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}')],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
