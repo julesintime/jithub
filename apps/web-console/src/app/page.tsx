@@ -3,9 +3,29 @@
 import { cn } from '@/lib/utils';
 import { signIn, signOut, useSession } from '@/lib/auth/client';
 import { Button } from '@/components/ui/button';
+import { OrganizationSwitcher } from '@/components/organization-switcher';
+import { useOrganizations } from '@/hooks/use-organizations';
+import { authClient } from '@/lib/auth/client';
+import { useEffect, useState } from 'react';
 
 export default function DashboardPage() {
   const { data: session, isPending } = useSession();
+  const { activeOrganizationId } = useOrganizations();
+  const [organizations, setOrganizations] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function loadOrganizations() {
+      if (session?.user) {
+        try {
+          const orgs = await authClient.organization.list();
+          setOrganizations(orgs || []);
+        } catch (error) {
+          console.error('Failed to load organizations:', error);
+        }
+      }
+    }
+    loadOrganizations();
+  }, [session]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -22,6 +42,12 @@ export default function DashboardPage() {
                   <div className="text-sm text-muted-foreground">
                     {session.user?.email}
                   </div>
+                  {organizations.length > 0 && (
+                    <OrganizationSwitcher
+                      organizations={organizations}
+                      activeOrganizationId={activeOrganizationId}
+                    />
+                  )}
                   <Button variant="outline" size="sm" onClick={() => signOut()}>
                     Sign Out
                   </Button>
