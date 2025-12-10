@@ -16,9 +16,11 @@ vi.mock('@/lib/auth/config', () => ({
 
 // Mock the Keycloak client
 vi.mock('@/lib/keycloak/client', () => ({
-  KeycloakOrganizationClient: vi.fn().mockImplementation(() => ({
-    inviteUserToOrganization: vi.fn().mockResolvedValue(undefined),
-  })),
+  KeycloakOrganizationClient: vi.fn().mockImplementation(function() {
+    return {
+      inviteUserToOrganization: vi.fn().mockResolvedValue(undefined),
+    };
+  }),
 }));
 
 describe('POST /api/organization/invite', () => {
@@ -207,9 +209,11 @@ describe('POST /api/organization/invite', () => {
     } as any);
 
     const mockInvite = vi.fn().mockResolvedValue(undefined);
-    vi.mocked(KeycloakOrganizationClient).mockImplementationOnce(() => ({
-      inviteUserToOrganization: mockInvite,
-    }) as any);
+    vi.mocked(KeycloakOrganizationClient).mockImplementationOnce(function() {
+      return {
+        inviteUserToOrganization: mockInvite,
+      };
+    } as any);
 
     const request = new Request('http://localhost:3000/api/organization/invite', {
       method: 'POST',

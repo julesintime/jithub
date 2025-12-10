@@ -16,12 +16,14 @@ vi.mock('@/lib/auth/config', () => ({
 
 // Mock the Keycloak client
 vi.mock('@/lib/keycloak/client', () => ({
-  KeycloakOrganizationClient: vi.fn().mockImplementation(() => ({
-    createOrganization: vi.fn().mockResolvedValue({ id: 'kc-org-123' }),
-    searchOrganizationsByAlias: vi.fn().mockResolvedValue([]),
-    getUserByEmail: vi.fn().mockResolvedValue({ id: 'kc-user-123' }),
-    addUserToOrganization: vi.fn().mockResolvedValue(undefined),
-  })),
+  KeycloakOrganizationClient: vi.fn().mockImplementation(function() {
+    return {
+      createOrganization: vi.fn().mockResolvedValue({ id: 'kc-org-123' }),
+      searchOrganizationsByAlias: vi.fn().mockResolvedValue([]),
+      getUserByEmail: vi.fn().mockResolvedValue({ id: 'kc-user-123' }),
+      addUserToOrganization: vi.fn().mockResolvedValue(undefined),
+    };
+  }),
 }));
 
 describe('POST /api/organization/create', () => {
@@ -163,12 +165,14 @@ describe('POST /api/organization/create', () => {
     } as any);
 
     // Mock Keycloak to return existing org
-    vi.mocked(KeycloakOrganizationClient).mockImplementationOnce(() => ({
-      createOrganization: vi.fn(),
-      searchOrganizationsByAlias: vi.fn().mockResolvedValue([{ id: 'kc-existing' }]),
-      getUserByEmail: vi.fn(),
-      addUserToOrganization: vi.fn(),
-    }) as any);
+    vi.mocked(KeycloakOrganizationClient).mockImplementationOnce(function() {
+      return {
+        createOrganization: vi.fn(),
+        searchOrganizationsByAlias: vi.fn().mockResolvedValue([{ id: 'kc-existing' }]),
+        getUserByEmail: vi.fn(),
+        addUserToOrganization: vi.fn(),
+      };
+    } as any);
 
     const request = new Request('http://localhost:3000/api/organization/create', {
       method: 'POST',
@@ -198,12 +202,14 @@ describe('POST /api/organization/create', () => {
     const mockGetUserByEmail = vi.fn().mockResolvedValue({ id: 'kc-user-123' });
     const mockAddUserToOrg = vi.fn().mockResolvedValue(undefined);
 
-    vi.mocked(KeycloakOrganizationClient).mockImplementationOnce(() => ({
-      createOrganization: mockCreateOrg,
-      searchOrganizationsByAlias: mockSearchByAlias,
-      getUserByEmail: mockGetUserByEmail,
-      addUserToOrganization: mockAddUserToOrg,
-    }) as any);
+    vi.mocked(KeycloakOrganizationClient).mockImplementationOnce(function() {
+      return {
+        createOrganization: mockCreateOrg,
+        searchOrganizationsByAlias: mockSearchByAlias,
+        getUserByEmail: mockGetUserByEmail,
+        addUserToOrganization: mockAddUserToOrg,
+      };
+    } as any);
 
     const request = new Request('http://localhost:3000/api/organization/create', {
       method: 'POST',

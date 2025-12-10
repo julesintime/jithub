@@ -16,6 +16,7 @@ async function cleanTestData() {
       WHERE slug LIKE 'test-%'
       OR slug LIKE 'new-%'
       OR slug LIKE 'admin-%'
+      OR slug = 'keycloak-conflict'
       OR name LIKE 'Test %'
       OR name LIKE 'New %'
     `);
