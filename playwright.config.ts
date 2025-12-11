@@ -11,6 +11,10 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './apps/web-console/e2e',
 
+  /* Global setup/teardown for test data management */
+  globalSetup: require.resolve('./apps/web-console/e2e/global-setup.ts'),
+  globalTeardown: require.resolve('./apps/web-console/e2e/global-teardown.ts'),
+
   /* Run tests in files in parallel */
   fullyParallel: false, // Sequential for auth state management
 
